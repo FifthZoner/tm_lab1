@@ -159,6 +159,7 @@ int main() {
                 case sf::Keyboard::Key::Num2: corner = b; break;
                 case sf::Keyboard::Key::Num3: corner = c; break;
                 case sf::Keyboard::Key::Num4: corner = d; break;
+                case sf::Keyboard::Key::Num5: liniowa = not liniowa; sha.setUniform("linear", liniowa); break;
                 default:break;
 
                 }
