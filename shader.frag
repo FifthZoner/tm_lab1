@@ -28,6 +28,7 @@ void main()
     float j = FpY / FpZ;
 
     if (i >= 0.f && i < sizeX && j >= 0.f && j < sizeY) {
+        // jeżeli jest ustawiony unifrm interpolacji liniowej to jest ona użyta zamiast najbliższego sąsiada
         if (linear) {
             // Wyliczanie koordynatów całkowitych
             int x0 = int(floor(i));
@@ -46,19 +47,13 @@ void main()
             vec4 color11 = texture2D(texture, vec2(float(x1) / float(sizeX), float(y1) / float(sizeY)));
 
             // Interpolacja liniowa
-            vec4 color = (1.0 - a) * (1.0 - b) * color00 +
-            a * (1.0 - b) * color10 +
-            (1.0 - a) * b * color01 +
-            a * b * color11;
+            vec4 color = (1.0 - a) * (1.0 - b) * color00 + a * (1.0 - b) * color10 + (1.0 - a) * b * color01 + a * b * color11;
 
             gl_FragColor = color;
         }
         else {
             gl_FragColor = texture2D(texture, vec2(float(i) / float(sizeX), float(j) / float(sizeY)));
         }
-
-
-
     }
     else {
         gl_FragColor = vec4(1.f, 1.f, 1.f, 1.f); // Kolor w przypadku wyjścia poza zakres
