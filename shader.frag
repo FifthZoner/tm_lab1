@@ -13,16 +13,20 @@ uniform float sizeY;
 
 void main()
 {
+    // zdobywanie koordynatów w obrazie
     vec2 coord = gl_FragCoord.xy;
     vec3 F = vec3(coord.x, coord.y, 1.0f);
 
+    // wyliczanie wektora przekształceń
     float FpX = r0 * F.x + r1 * F.y + r2 * F.z;
     float FpY = r3 * F.x + r4 * F.y + r5 * F.z;
     float FpZ = r6 * F.x + r7 * F.y + r8 * F.z;
 
+    // wyliczanie koordynatów w obrazie wejściowym
     float i = FpX / FpZ;
     float j = FpY / FpZ;
 
+    // ustawianie koloru
     if (i >= 0.f && i < sizeX && j >= 0.f && j < sizeY) {
         gl_FragColor = texture2D(texture, vec2(float(i) / float(sizeX), float(j) / float(sizeY)));
     } else {
