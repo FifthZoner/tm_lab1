@@ -116,6 +116,7 @@ int main() {
     sha.setUniform("texture", tex);
     sha.setUniform("sizeX", float(tex.getSize().x));
     sha.setUniform("sizeY", float(tex.getSize().y));
+    sha.setUniform("linear", false);
     Update(tex, sha);
 
     // tworzenie okien obrazu przed i po
@@ -126,6 +127,7 @@ int main() {
     window2.setFramerateLimit(360);
 
     Corner corner = a;
+    bool liniowa = false;
 
     while (window.isOpen() and window2.isOpen())
     {
@@ -140,6 +142,7 @@ int main() {
                 case sf::Keyboard::Key::Num2: corner = b; break;
                 case sf::Keyboard::Key::Num3: corner = c; break;
                 case sf::Keyboard::Key::Num4: corner = d; break;
+                case sf::Keyboard::Key::Num5: liniowa = not liniowa; sha.setUniform("linear", liniowa); break;
                     default:break;
 
                 }
